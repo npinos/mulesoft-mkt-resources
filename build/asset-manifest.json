@@ -1,7 +1,8 @@
 {
-  "main.css": "static/css/main.9c792322.css",
-  "main.css.map": "static/css/main.9c792322.css.map",
-  "main.js": "static/js/main.61a40b41.js",
-  "main.js.map": "static/js/main.61a40b41.js.map",
+  "main.css": "static/css/main.298c70bf.css",
+  "main.css.map": "static/css/main.298c70bf.css.map",
+  "main.js": "static/js/main.adcc8f70.js",
+  "main.js.map": "static/js/main.adcc8f70.js.map",
+  "static/media/InfiniteScrollingPagination.tsx": "static/media/InfiniteScrollingPagination.d2b983b6.tsx",
   "static/media/filter_icon.svg": "static/media/filter_icon.eeb43ce7.svg"
 }

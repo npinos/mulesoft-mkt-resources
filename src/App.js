@@ -1,15 +1,13 @@
 import React, { Component } from 'react'
 import extend from 'lodash/extend'
-import { SearchkitManager,SearchkitProvider,
-  SearchBox, RefinementListFilter, Pagination,
-  HierarchicalMenuFilter, HitsStats, SortingSelector, NoHits,
-  ResetFilters, RangeFilter, NumericRefinementListFilter,
-  ViewSwitcherHits, ViewSwitcherToggle, DynamicRangeFilter,
+import { SearchkitManager,SearchkitProvider, RefinementListFilter, Pagination,
+  HitsStats, SortingSelector, NoHits,
+  ResetFilters, ViewSwitcherHits, ViewSwitcherToggle, DynamicRangeFilter,
   InputFilter, GroupedSelectedFilters,
-  Layout, TopBar, LayoutBody, LayoutResults,
-  ActionBar, ActionBarRow, SideBar } from 'searchkit'
-import './index.css'
-import { width } from 'window-size';
+  Layout, LayoutBody, LayoutResults } from 'searchkit'
+import './index.css';  
+import InfiniteScrollingPagination from './components/pagination/InfiniteScrollingPagination.tsx';
+
 
 const host = "https://271457c113ad4edd831f7f16e895c271.us-west-1.aws.found.io:9243/resources/"
 const searchkit = new SearchkitManager(host, {
@@ -36,24 +34,27 @@ class App extends Component {
         <Layout>
           <LayoutBody>
             <section className="controls">
-              <div className="filters-trigger">
-                <a href="#" onClick={()=>{ document.getElementsByClassName('filters-trigger')[0].classList.toggle('active'); document.getElementById('filters-bg').classList.toggle('active');}}>Filter</a>
+              <div className="filters-wrapper">
+                <div className="filters-trigger" onClick={()=>{ document.getElementsByClassName('filters-wrapper')[0].classList.toggle('active'); document.getElementById('filters-bg').classList.toggle('active');}}>
+                  <span href="#">Filter</span>
+                </div>
                 <div id="filters" className="filters-container">
                   <div className="filters-header">
                     <ResetFilters translations={{"reset.clear_all":"Clear all"}}/>
                     <HitsStats translations={{
                         "hitstats.results_found":"{hitCount} results found"
                       }}/>
-                    <div className="close-filters-container" onClick={()=>{ document.getElementsByClassName('filters-trigger')[0].classList.toggle('active'); document.getElementById('filters-bg').classList.toggle('active');}}>X</div>  
+                    <div className="close-filters-container" onClick={()=>{ document.getElementsByClassName('filters-wrapper')[0].classList.toggle('active'); document.getElementById('filters-bg').classList.toggle('active');}}>X</div>  
                   </div>
                   <div className="filters-input-container">
                     <RefinementListFilter id="initiatives" title="Initiative" field="initiatives.keyword" operator="OR"/>  
                     <RefinementListFilter id="industries" title="Industry" field="industries.keyword" operator="OR"/>
                     <RefinementListFilter id="technologies" title="Technology" field="technologies.keyword" operator="OR"/>
+                    <RefinementListFilter id="type" title="Type" field="type.keyword" operator="OR"/>
                   </div>
                 </div>
               </div>
-              <div className="facets-container">           
+              <div className="facets-container">          
                 <div className="reset_main">
                   <ResetFilters translations={{"reset.clear_all":"Clear all"}}/>
                 </div>
@@ -69,13 +70,12 @@ class App extends Component {
                         hitComponents={[
                           {key:"list", title:"List", itemComponent:ResourceListItem}
                         ]}
-                        scrollTo="body"
+                        hitsPerPage={999}
                       />
                   </div>
                 </div>
               </div>
               <NoHits suggestionsField={"type,title,path"}/>
-              <Pagination showNumbers={true}/>
             </LayoutResults>
           </LayoutBody>
         </Layout>
