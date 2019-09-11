@@ -154,7 +154,9 @@ body {
   flex-direction: row;
 }
 @media screen and (max-width:992px) {
-  min-width: initial;
+  .controls {
+    min-width: initial;
+  }
 }
 
 .filters-wrapper {
@@ -199,6 +201,11 @@ body {
   background-color: #F4FCFF;
   z-index: 999;
   display: none;
+}
+@media screen and (max-width: 768px) {
+  .filters-container {
+    min-width: 100%;
+  }
 }
 
 .filters-container .filters-header {
