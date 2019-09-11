@@ -19,11 +19,11 @@ const ResourceListItem = (props)=> {
   const source = extend({}, result._source)
   let resUrl = '';
   return (
-    <div style={{width: '30%', margin: '0 15px 15px 0', display: 'inline-block', minHeight: '320px'}} className="component-tile component-tile--view-mode-d bricks-component-edit-control-container">
+    <a className="component-tile component-tile--view-mode-d bricks-component-edit-control-container" href={'https://mulesoftd8.www.msit.io' + source.path}>
       <h3 className="field">{source.title}</h3>
       <p className="field">{source.summary}</p>
-      <a href={'https://mulesoftd8.www.msit.io' + source.path} target="_blank" className="arrow-button field">See more</a>
-    </div>
+      <span href={'https://mulesoftd8.www.msit.io' + source.path} target="_blank" className="arrow-button field">See more</span>
+    </a>
   )
 }
 
@@ -63,7 +63,7 @@ class App extends Component {
             </section>
             <LayoutResults className="no-padding-top-region">
               <div className="row-wrapper">
-                <div className="row grid-x grid-margin-x">
+                <div className="row grid-x">
                   <div className="small-10 small-offset-1 medium-12 medium-offset-0 cell">
                       <ViewSwitcherHits
                         sourceFilter={["type", "path", "industries", "title", "summary"]}
