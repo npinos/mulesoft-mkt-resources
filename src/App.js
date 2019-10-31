@@ -66,7 +66,7 @@ class App extends Component {
                 <div className="row grid-x">
                   <div className="small-10 small-offset-1 medium-12 medium-offset-0 cell">
                       <ViewSwitcherHits
-                        sourceFilter={["type", "path", "industries", "title", "summary"]}
+                        sourceFilter={["type", "path", "title", "summary"]}
                         hitComponents={[
                           {key:"list", title:"List", itemComponent:ResourceListItem}
                         ]}
